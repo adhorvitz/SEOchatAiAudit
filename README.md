@@ -2,7 +2,7 @@
 This is an hobby project based off of an SEO expert I follow on LinkedIn. It is designed to utilize AI to audit content of websites.
 Oringial post is by Daniel Foley Carter - https://www.linkedin.com/feed/update/urn:li:activity:7038927727524999168/
 
-I'm attempting to translate and adapt.
+I'm attempting to translate and adapt. 
 
 
 SEO hack - leverage AI as if it were a Google human quality rater. Use this script to have an E-E-A-T / YMYL audit of your content.
