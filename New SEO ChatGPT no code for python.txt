@@ -1,0 +1,44 @@
+#
+import requests
+import json
+
+SECRET_KEY = "PUT-YOUR-API-KEY-HERE"
+MAX_TOKENS = 1000
+GPT_MODEL = "text-davinci-003"
+
+def generateOpenAIRequest(prompt, temperature=0.7, model=GPT_MODEL):
+    url = "https://api.openai.com/v1/completions"
+    payload = {
+        "model": model,
+        "prompt": prompt,
+        "temperature": temperature,
+        "max_tokens": MAX_TOKENS,
+    }
+    headers = {"Authorization": "Bearer " + SECRET_KEY, "Content-Type": "application/json"}
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    res = response.json()
+    return res["choices"][0]["text"].strip()
+
+#
+
+#To use this code, follow the steps below:
+
+Get a free API key for OpenAI GPT-3 and replace the SECRET_KEY variable in the script with your API key.
+
+Define the prompt for the GPT-3 model by creating a string with the following text (without the quotes): "I would like you to audit content for me based on a URL I specify below. I would like you to audit content as if you were a Google Quality Rater following the rules set out by Google (which you can see here https://developers.google.com/search/blog/2022/12/google-raters-guidelines-e-e-a-t) in respect of E-E-A-T (experience, expertise, authority and trust) - I would also like you to consider YMYL (your money your life where applicable) and Google medic factors also depending on the content type and nature. I would like you to provide a content quality rating based on a scale of 1 to 10 where 10 is best and 0 is worst. You should take into consideration - how well the content is written, how well it aligns with Google's E-E-A-T guidelines for human quality raters, how well structured the content is, if it makes it clear what is on offer, is it grammatically correct and well written and does it fit the end users intent when comparing the main H1 tag to the body of the content. You should provide clear, actionable recommendations for any areas where the content has an issue as well as guidance to bolster expertise and trust where applicable. You should not self-reference and should avoid making any assumptions, the content for you to audit can be found here:"
+
+Define the URL to be audited as a string.
+
+Concatenate the prompt and URL strings together.
+
+Call the generateOpenAIRequest() function with the concatenated string as the argument.
+
+For example:
+
+less
+
+
+#
+prompt = "I would like you to audit content for me based on a URL I specify below. I would like you to audit content as if you were a Google Quality Rater following the rules set out by Google (which you can see here https://developers.google.com/search/blog/2022/12/google-raters-guidelines-e-e-a-t) in respect of E-E-A-T (experience, expertise, authority and trust) - I would also like you to consider YMYL (your money your life where applicable) and Google medic factors also depending on the content type and nature. I would like you to provide a content quality rating based on a scale of 1 to 10 where 10 is best and 0 is worst. You should take into consideration - how well the content is written, how well it aligns with Google's E-E-A-T guidelines for human quality raters, how well structured the content is, if it makes it
+
+
